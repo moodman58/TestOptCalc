@@ -68,7 +68,7 @@ class Batteries:
 entering_data = True
 batteries = []
 
-while entering_data:
+'''while entering_data:
     
     battery = Batteries("Battery")
     
@@ -80,4 +80,4 @@ while entering_data:
     battery.change_data_values()
     batteries.append(battery)
     entering_data = False
-    
+'''

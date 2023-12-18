@@ -132,7 +132,7 @@ class PowerSystem:
 # Arrays to store PowerSystem objects
 power_systems = []
 Playing = True
-while Playing: #Main loop, user enters files and class functions are run    
+'''while Playing: #Main loop, user enters files and class functions are run    
     new_file = input("Enter motor file name: ")
     ps = PowerSystem(new_file) #Class instance
     ps.thrust_power()
@@ -141,7 +141,7 @@ while Playing: #Main loop, user enters files and class functions are run
     ps.display_coefficients()
     power_systems.append(ps.data_collected)
     # print(ps.data_collected) #This is to print the dictionary of info
-    Playing = False #Ends loop
+    Playing = False #Ends loop'''
 
     
 r"""HOW TO USE

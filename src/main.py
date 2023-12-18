@@ -1,7 +1,7 @@
-import Propulsion
-import batteries
-from Propulsion import PowerSystem
-from batteries import Batteries
+from . import Propulsion
+from . import batteries
+from .Propulsion import PowerSystem
+from .batteries import Batteries
 import matplotlib.pyplot as plt
 import sympy as s
 
@@ -9,10 +9,10 @@ import sympy as s
 class flight_time:
     """This class extracts data from a motor text file and a battery text file and outputs the optimal number of batteries needed to maximize the time of flight for the drone
     """    
-    def __init__(self):
+    def __init__(self, motor_file, battery_file, drone_weight, desired_velocity, desired_altitude):
         # Create instances of Both classes and run the Propulsion.py and batteries.py files
-        self.power_system = PowerSystem(Propulsion.new_file)
-        self.battery_system = Batteries(batteries.file_name)
+        self.power_system = PowerSystem(motor_file)
+        self.battery_system = Batteries(battery_file)
         self.battery_system.get_file_values() #
         # Get access to both classes dictionaries of information 
         self.data_collected_Powersystem = self.power_system.data_collected
@@ -22,9 +22,9 @@ class flight_time:
         
 
         #User enters velocity(m/s), weight(g) and desired altitude(m) of drone
-        self.desired_velocity = input("Enter drone velocity(m/s): ")  # v
-        self.desired_altitude = input("Enter drone desired altitude(m): ")  # d
-        self.drone_weight = float(input("Enter drone weight (grams): "))
+        self.desired_velocity = float(desired_velocity)  # v
+        self.desired_altitude = float(desired_altitude)  # d
+        self.drone_weight = float(drone_weight)
         #Retrieve battery mass
         self.battery_mass = float(
             self.battery_system.data_collected["MASS OF BATTERY"]
@@ -54,9 +54,11 @@ class flight_time:
         )
         return takeoff_time
 
-    def hover_phase(self):
+    def hover_phase(self, battery_num):
         """Calculates Hover Time of Flight with ideally a user provided number of batteries
         """        
+
+        self.hover_thrust = (float(self.drone_weight) + float(self.battery_mass * battery_num)) / 4
         discriminant = (self.power_system.data_collected["B"]) ** 2 - 4 * (
             self.power_system.data_collected["A"]
             * (self.power_system.data_collected["C"] - self.hover_thrust)
@@ -64,7 +66,7 @@ class flight_time:
         power = (
             (
                 (-1 * self.power_system.data_collected["B"])
-                + ((discriminant) ** 0.5)
+                + ((float(discriminant)) ** 0.5)
             )
         ) / (2 * self.power_system.data_collected["A"])
 
@@ -83,7 +85,7 @@ class flight_time:
                             ]
                         )
                     )
-                    * float(self.battery_number)
+                    * float(battery_num)
                 )
                 / (power * float(self.motor_number))
             )
@@ -186,19 +188,21 @@ class flight_time:
                 )
                 self.optimal_battery = round(i)
 
-        return -1
+        return self.optimal_battery
     
    
 
 # Create an instance of flight_time
-flight_time_instance = flight_time()
-
+#flight_time_instance = flight_time("V505","Battery",6500, 20, 100)
+#bnum = flight_time_instance.optimization()
+#print(bnum)
+#print(flight_time_instance.hover_phase(bnum))
 # Call function
-flight_time_instance.battery_number_finder()
+#flight_time_instance.battery_number_finder()
 #Display takeoff and landing time of flight
-print("Takeoff time of flight: ", flight_time_instance.vertical_takeoff())
-print("Landing time of flight: ", flight_time_instance.vertical_landing())
+#print("Takeoff time of flight: ", flight_time_instance.vertical_takeoff())
+#print("Landing time of flight: ", flight_time_instance.vertical_landing())
 
 
 #Display hover time of flight and optimal battery number
-flight_time_instance.optimization()
+#flight_time_instance.optimization()
