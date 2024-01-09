@@ -47,7 +47,7 @@ class Batteries:
             print(os.listdir("data/batteries"))
             print("File not found. Please check the battery file name.")
             print("Current Working Directory:", os.getcwd())
-            print("data/batteries\{}.txt".format(self.data_collected["FILE NAME"]))
+            print("data/batteries/{}.txt".format(self.data_collected["FILE NAME"]))
             exit()
             
 
