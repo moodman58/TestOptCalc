@@ -43,7 +43,7 @@ class Batteries:
                 "r",
             )
         except FileNotFoundError:
-            print(os.listdir())
+            print(os.listdir(os.getcwd()))
             print(os.listdir(data/batteries))
             print("File not found. Please check the battery file name.")
             print("Current Working Directory:", os.getcwd())
