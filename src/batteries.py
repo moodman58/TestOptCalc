@@ -8,7 +8,7 @@ Use those values to compute the energy per battery
 and have these values as attributes in a class, similar to motors.
 
 """
-
+import os
 class Batteries:
     def __init__(self, file_name):
         self.data_collected: dict = {
@@ -41,8 +41,10 @@ class Batteries:
                 "data/batteries\{}.txt".format(self.data_collected["FILE NAME"]),
                 "r",
             )
+            print("Current Working Directory:", os.getcwd())
         except FileNotFoundError:
             print("File not found. Please check the battery file name.")
+            print("Current Working Directory:", os.getcwd())
             exit()
             
 
