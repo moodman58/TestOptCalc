@@ -19,7 +19,7 @@ def index():
         session["optimal_batteries"] = float(optimal_batteries)
         session["time_of_flight"] = float(time_of_flight)
         # Pass the results to the template
-       return render_template('results.html', optimal_batteries=optimal_batteries, time_of_flight=time_of_flight)
+        return render_template('results.html', optimal_batteries=optimal_batteries, time_of_flight=time_of_flight)
     else:
         return render_template('index.html')
 
