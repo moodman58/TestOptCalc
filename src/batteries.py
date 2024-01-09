@@ -39,7 +39,7 @@ class Batteries:
         try: 
             print("Current Working Directory:", os.getcwd())
             battery_file = open(
-                "/opt/render/project/data/batteries/{}.txt".format(self.data_collected["FILE NAME"]),
+                "os.getcwd()/data/batteries/{}.txt".format(self.data_collected["FILE NAME"]),
                 "r",
             )
         except FileNotFoundError:
