@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for, redirect, session
+from flask import Flask, request, render_template, url_for, redirect, session, jsonify
 from src.main import flight_time  # Adjust import according to your project structure
 
 app = Flask(__name__)
@@ -44,3 +44,5 @@ def results():
         return render_template('results.html', optimal_batteries=optimal_batteries, time_of_flight=time_of_flight)
 if __name__ == '__main__':
     app.run(debug=True)
+
+    

@@ -100,7 +100,7 @@ class flight_time:
                 / float(self.motor_number)
             )
         )
-        return time_cruise
+        return str(round(time_cruise)).rstrip("0")
 
     def vertical_landing(self):
         """Calculates and returns time to reach ground from desired altitude
