@@ -37,11 +37,11 @@ class Batteries:
 
     def get_file_values(self):
         try: 
+            print("Current Working Directory:", os.getcwd())
             battery_file = open(
                 "data/batteries\{}.txt".format(self.data_collected["FILE NAME"]),
                 "r",
             )
-            print("Current Working Directory:", os.getcwd())
         except FileNotFoundError:
             print("File not found. Please check the battery file name.")
             print("Current Working Directory:", os.getcwd())
