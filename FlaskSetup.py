@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template, url_for, redirect, session, jsonify
 from src.main import flight_time  # Adjust import according to your project structure
 import os
-app.secret_key = 'f435gg364h45h5h5df'
 app = Flask(__name__)
+app.secret_key = 'f435gg364h45h5h5df'
 @app.route('/', methods=['POST', 'GET'])
 
 def index():
