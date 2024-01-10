@@ -36,7 +36,7 @@ class PowerSystem:
         """Reads the file specified by user and replaces values in the dictionary of information with the respected values in the file. If file name is not found exits program"""
         try:
             rotor_file = open(
-                "data/propulsion\{}.txt".format(
+                "data/propulsion/{}.txt".format(
                     self.data_collected["FILE NAME"]
                 ),
                 "r",
