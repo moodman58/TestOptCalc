@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template, url_for, redirect, session, jsonify
 from src.main import flight_time  # Adjust import according to your project structure
 import os
+SECRET_KEY = 'f435gg364h45h5h5df'
 app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
+
 def index():
     if request.method == 'POST':
         motor_file = request.form['motor_file']
@@ -25,11 +27,6 @@ def index():
 
 
 if __name__ == '__main__':
-    if 'SECRET_KEY' in os.environ:
-        app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
-    else:
-        # Set a default secret key if the environment variable is not set
-        app.config['SECRET_KEY'] = os.urandom(12)
     app.run(debug=False)
 
     
