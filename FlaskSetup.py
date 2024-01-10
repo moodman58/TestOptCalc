@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, url_for, redirect, session, jsonify
 from src.main import flight_time  # Adjust import according to your project structure
-
+import os
 app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def index():
