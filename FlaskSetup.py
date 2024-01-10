@@ -1,10 +1,3 @@
-import sys
-
-# Add '.' (current directory) to the system path
-sys.path.append('.')
-
-# Add '..' (parent directory) to the system path
-sys.path.append('..')
 from flask import Flask, request, render_template, url_for, redirect, session, jsonify
 from src.main import flight_time  # Adjust import according to your project structure
 
