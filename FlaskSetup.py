@@ -25,6 +25,11 @@ def index():
 
 
 if __name__ == '__main__':
+      if 'SECRET_KEY' in os.environ:
+        app.config['SECRET_KEY'] = os.urandom(12)
+      else:
+        # Set a default secret key if the environment variable is not set
+        app.config['SECRET_KEY'] = 'your_default_secret_key_here'
     app.run(debug=False)
 
     
