@@ -65,23 +65,24 @@ form {
 .result-title{
   padding-left: 90px;
   padding-top: 35px;
-  color: green;
+  color: rgb(0, 255, 0);
   font-size: 1.5em;
 }
 .result-batteries{
-    
+    color: white;
     padding-left: 90px;
     font-size: 1.5em;
     padding-top: 25px;
     
 }
 .result-time{
-    
+    color: white;
     padding-left: 90px;
     font-size: 1.5em;
     padding-top: 25px;
 }
 .motor-file-title{
+  color: yellow;
     font-size: 1.5em;
     padding-right: 300px;
     text-align: right;
@@ -90,10 +91,15 @@ form {
   }
   
 .battery-file-title{
+    color: yellow;
     font-size: 1.5em;
     text-align: right;
     padding-right: 500px;
     padding-bottom: 0px;
+  }
+a{
+
+    color: white;
   }
 .user-input2{
   margin-left: 20px;
@@ -128,12 +134,11 @@ button {
 }
 
 
-body{
-  background-image: url('images/plane.jpg');
+body {
+  background-image: linear-gradient(rgb(0, 0, 0, 1),rgba(0, 0, 0, 0.7)) , url('images/plane.jpg');
   background-repeat: no-repeat;
-  height: 100vh;
+  background-attachment: fixed;
   background-size: cover;
-  background-blend-mode: multiply;
 }
 
 
