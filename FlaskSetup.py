@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template, url_for, redirect, session, jsonify
 from src.main import flight_time  # Adjust import according to your project structure
 import os
+import numpy as np
+import sympy as s
+import json
 app = Flask(__name__)
 app.secret_key = 'f435gg364h45h5h5df'
 @app.route('/', methods=['POST', 'GET'])
@@ -17,11 +20,13 @@ def index():
         flight_time_instance = flight_time(motor_file, battery_file, drone_weight, desired_velocity, desired_altitude)
         optimal_batteries = flight_time_instance.optimization()
         time_of_flight = flight_time_instance.hover_phase(flight_time_instance.optimization())
-
+        graph_data = flight_time_instance.ReturnData()
+        
         session["optimal_batteries"] = float(optimal_batteries)
         session["time_of_flight"] = float(time_of_flight)
+        session["graph_data"] = graph_data
         # Pass the results to the template
-        return render_template('results.html', optimal_batteries=optimal_batteries, time_of_flight=time_of_flight)
+        return render_template('results.html', optimal_batteries=optimal_batteries, time_of_flight=time_of_flight, graph_data = json.dumps(graph_data))
     else:
         return render_template('index.html')
 

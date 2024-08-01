@@ -4,7 +4,7 @@ from .Propulsion import PowerSystem
 from .batteries import Batteries
 import matplotlib.pyplot as plt
 import sympy as s
-
+import numpy as np
 
 class flight_time:
     """This class extracts data from a motor text file and a battery text file and outputs the optimal number of batteries needed to maximize the time of flight for the drone
@@ -13,7 +13,7 @@ class flight_time:
         # Create instances of Both classes and run the Propulsion.py and batteries.py files
         self.power_system = PowerSystem(motor_file)
         self.battery_system = Batteries(battery_file)
-        self.battery_system.get_file_values() #
+        self.battery_system.get_file_values()
         # Get access to both classes dictionaries of information 
         self.data_collected_Powersystem = self.power_system.data_collected
         self.data_collected_Battery = self.battery_system.data_collected
@@ -167,6 +167,7 @@ class flight_time:
         equation = 3.6 * (((V * mAh) / M) * (2 * A) * x) / (
             -B + s.sqrt((B**2) - a * (c - ((Wb / M) * x)))
         )
+
         #Take the derivative of the Time of Flight equation and solve it for Number of Batteries
         derivative = s.diff(equation, x).subs(values)
         solutions = s.solve(derivative, x)
@@ -187,22 +188,95 @@ class flight_time:
                     )
                 )
                 self.optimal_battery = round(i)
+        # Generate numerical values for x and the corresponding time of flight values
+        equation_sub = equation.subs(values)
+        x_vals = np.linspace(1, 30, 30)  # Example range for number of batteries
+        time_of_flight_vals = [equation_sub.subs(x, val).evalf() for val in x_vals]
+        graph_data = [{"BatteryNumber": int(x), "FlightTime": y} for x, y in zip(x_vals, time_of_flight_vals)]
+        
+        print(x_vals)
+        #print(time_of_flight_vals)
 
+        # Plotting
         return self.optimal_battery
+    def ReturnData(self):
+        """Uses Time of Flight equation to optimize number of batteries for highest Time of Flight.
+        Uses derivative calculator and solver.
+        """      
+        #All the variables that go in our time of flight equation
+        x = s.symbols("x") #Number of batteries
+        mAh = s.symbols("Ah") #Battery mAh
+        V = s.symbols("V") #Battery Voltage
+        M = s.symbols("M") #Motor Number
+        Wb = s.symbols("Wb") #Battery weight
+        Wd = s.symbols("Wd") #Drone weight 
+        d = s.symbols("d") #Desired altitude
+        vel = s.symbols("vel") #Desired Velocity
+        A = s.symbols("A") #A in (inputPower, Thrust) equation
+        B = s.symbols("B") #B in (inputPower, Thrust) equation
+        #Give the variables above numerical values
+        values = {
+            A: float(self.power_system.data_collected["A"]),
+            B: float(self.power_system.data_collected["B"]),
+            M: float(self.motor_number),
+            V: float(self.battery_system.data_collected["BATTERY VOLTAGE"]),
+            mAh: float(self.battery_system.data_collected["mAh OF BATTERY"]),
+            Wb: float(self.battery_mass),
+        }
+        #Just set some variables to simplify writing the equation
+        c = self.power_system.data_collected["C"] - self.drone_weight / 4
+        a = self.power_system.data_collected["A"] * 4
+        #Time of Flight equation
+        equation = 3.6 * (((V * mAh) / M) * (2 * A) * x) / (
+            -B + s.sqrt((B**2) - a * (c - ((Wb / M) * x)))
+        )
+
+        #Take the derivative of the Time of Flight equation and solve it for Number of Batteries
+        derivative = s.diff(equation, x).subs(values)
+        solutions = s.solve(derivative, x)
+        #Array of only real solutions from solving the derivative
+        real_solutions = [s.re(sol) for sol in solutions]
+        for i in real_solutions: 
+            if i > 0: #Since number of batteries positive
+                print("Optimal number of batteries: " + str(round(i))) #round the solution since number of batteries is whole number
+                substituted_equation = equation.subs(x, round(i))
+                
+                # Evaluate the Time of Flight equation with optimal number of batteries 
+                evaluated_equation = substituted_equation.evalf(subs=values) 
+
+                # Print the Time of flight and the optimal number of batteries
+                print(
+                    "Time of flight with battery number = {}: {} seconds".format(
+                        round(i), evaluated_equation
+                    )
+                )
+                self.optimal_battery = round(i)
+        # Generate numerical values for x and the corresponding time of flight values
+        equation_sub = equation.subs(values)
+        x_vals = np.linspace(1, 30, 30)  # Example range for number of batteries
+        time_of_flight_vals = [float(equation_sub.subs(x, val).evalf()) for val in x_vals]
+        graph_data = [{"BatteryNumber": int(x), "FlightTime": float(y)} for x, y in zip(x_vals, time_of_flight_vals)]
+        
+        print(x_vals)
+        #print(time_of_flight_vals)
+
+        # Plotting
+        return graph_data
     
    
 
 # Create an instance of flight_time
-#flight_time_instance = flight_time("V505","Battery",6500, 20, 100)
-#bnum = flight_time_instance.optimization()
-#print(bnum)
-#print(flight_time_instance.hover_phase(bnum))
+flight_time_instance = flight_time("V505","LiPo-1",6500, 20, 100)
+bnum = flight_time_instance.optimization()
+print(bnum)
+print(flight_time_instance.hover_phase(bnum))
 # Call function
-#flight_time_instance.battery_number_finder()
+flight_time_instance.battery_number_finder()
 #Display takeoff and landing time of flight
 #print("Takeoff time of flight: ", flight_time_instance.vertical_takeoff())
 #print("Landing time of flight: ", flight_time_instance.vertical_landing())
 
 
 #Display hover time of flight and optimal battery number
-#flight_time_instance.optimization()
+flight_time_instance.optimization()
+flight_time_instance.ReturnData()

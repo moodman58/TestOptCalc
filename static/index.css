@@ -1,155 +1,163 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
 *{
-  margin: 0;
-  padding: 0;
-  font: inherit;
-}
-html{
-  color-scheme: dark light;
-}
-body {
-  min-height: 100vh;
-}
-img, picture, svg, video{
-  display: block;
-  max-width: 100%;
-}
-
-/* Importing Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-/* Reset some default styles */
-body, h1, h2{
-  margin: 0;
-  padding: 0;
-}
-
-form {
-  font-family: 'Roboto', sans-serif; /* Updated font */
-  color: white;
-  line-height: 1.6;
-  padding-left: 80px;
-  padding-top: 20px;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-.header2 {
-  color: gold;
-  padding: 0px;
-  padding-top: 10px;
-  text-align: center;
-  font-size: 2.5em;
-  font-weight: normal;
-  margin-bottom: 30px;
-}
-
-.owner {
-  text-align: center;
-  font-size: 1.2em;
-  color: white; /* Lighter text */
-  margin-bottom: 30px;
-}
-
-.introduction {
-  color: white; 
-  font-size: 1.1em;
-  max-width: 700px;
-  padding-left: 350px;
-}
-.motor-file-title{
-  color: yellow;
-  font-size: 1.5em;
-  padding-right: 300px;
-  text-align: right;
-  margin-bottom: 80px;
-  padding-bottom:100px;
-}
-
-.battery-file-title{
-  color: yellow;
-  font-size: 1.5em;
-  text-align: right;
-  padding-right: 500px;
-  margin-bottom:80px;
-  padding-bottom: 0px;
-}
-
-a{
-  color: white;
-}
-.user-input{
-  margin-left: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
 }
 
 
-
-input[type="text"],
-input[type="number"],
-button {
-  padding: 10px;
-  margin: 20px;
-  margin-left: 45px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: all 0.3s ease; /* Smooth transition for interactions */
+.header{
+    width: 100%;
+    height: 80px;
+    display: block;
+    background-color: rgb(41, 40, 40);
+    
 }
 
-body {
-  background-image: linear-gradient(rgb(0, 0, 0, 1),rgba(0, 0, 0, 0.7)) , url('images/plane.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+.innerheader{
+    width: 1000px;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.logos{
+    height: 100%;
+    display: table;
+    float: left;
+}
+.logos h1{
+    color: white;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: "Montserrat";
+    font-size: 32px;
+    font-weight: 200;
+}
+.logos h1 span{
+    font-weight: 800;
+}
+.navigation{
+    float: right;
+    height: 100%;
 }
 
-
-.optimize-button2{
-  background: red;
-  border-radius: 10px;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  border: 0px;
-}
-.optimize-button2:hover{
-  opacity: 0.8;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
-
-/* Responsive design for smaller screens */
-@media only screen and (max-width: 600px) {
-  .header {
-    font-size: 2em; /* Smaller font size for headers on small screens */
-  }
-
-  .introduction {
-    font-size: 1em; /* Smaller text on small screens */
-  }
+.navigation a{
+    height: 100%;
+    display: table;
+    float: left;
+    padding: 0px 20px;
 }
 
 
-@media (max-width: 768px){
-  .header2 {
-    font-size: 2em;
-  }
-
-  .introduction {
-    font-size: 1em;
-    text-align: center;
-    padding: 0 10px; /* Adjusted padding for better spacing on smaller screens */
-  }
-
-  .motor-file-title,
-  .battery-file-title {
-    padding-right: 20px; /* Adjusted padding for better spacing on smaller screens */
-    padding-left: 20px;
-  }
+.navigation a:last-child{
+    padding-right: 0;
+}
+.navigation a li{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    color: white;
+    font-family: "montserrat";
+    font-size: 16px;
 }
 
-@media only screen and (min-width: 768) and (max-width:1023){
+.flex-container{
+    display: flex;
+}
+.main-container{
+    flex: 1;
+    height: 95vh;
+    background-color: rgb(210, 206, 206);
+}
 
+.inputs{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    margin: 0 20px;
+    font-size: 15px;
+    font-family: "montserrat";
+}
+
+* input{
+    padding: 2px;
+    border-radius: 2px;
+}
+* select{
+    padding: 2px;
+    border-radius: 2px;
+}
+
+
+.calculate-button{
+    background-color: green;
+    font-size: 15px;
+    width: 100px;
+}
+.calculate-button:hover{
+    opacity: 90%;
+    cursor: pointer;
+}
+
+.Analysis-Box{
+    background-color: rgb(210, 206, 206);
+    width: 20%
+}
+.Batteries-Box{
+    background-color: rgb(210, 206, 206);
+    width: 20%;
+}
+.Results-Box{
+    width: 20%;
+    background-color: rgb(58, 187, 112);
+   
+}
+
+.Results-Analysis-Title{
+    font-size: 20px;
+    font-family: "montseratt";
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.Motor-Analysis-Title{
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: "montseratt";
+    margin-bottom: 20px;
+}
+
+.Battery-Analysis-Title{
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: "montseratt";
+    margin-bottom: 20px;
+}
+.Results-Analysis-List{
+    font-size: 15px;
+    font-family: "montseratt";
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+.Motor-Analysis-List{
+    font-size: 15px;
+    font-family: "montseratt";
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.Battery-Analysis-List{
+    font-size: 15px;
+    font-family: "montseratt";
+    margin-bottom: 20px;
+    margin-left: 10px;
+    
+}
+
+.Graph-Container{
+    margin-top: 5vh;
+
+    height: 40vh;
+    width: 80vh;
 }

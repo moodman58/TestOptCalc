@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+    
+    <script type="module">
+        (async function() {
+        const data = [
+          { BatteryNumber: 1, FlightTime: 2 },
+          { BatteryNumber: 2, FlightTime: 20 },
+          { BatteryNumber: 3, FlightTime: 15 },
+          { BatteryNumber: 4, FlightTime: 25 },
+          { BatteryNumber: 5, FlightTime: 22 },
+          { BatteryNumber: 6, FlightTime: 30 },
+          { BatteryNumber: 7, FlightTime: 28 },
+        ];
+      
+        new Chart(
+          document.getElementById('acquisitions'),
+          {
+            type: 'line',
+            data: {
+              labels: data.map(row => row.BatteryNumber),
+              datasets: [
+                {
+                  label: 'Flight Time vs Battery Count',
+                  data: data.map(row => row.FlightTime)
+                }
+              ]
+            }
+          }
+        );
+      })();</script>
+
+ 
+
+</body>
+</html>

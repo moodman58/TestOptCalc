@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flight Optimizer</title>
+    <link rel="stylesheet" href="../static/results.css">
+</head>
+
+<body>
+    <h1 class="header1">Flight Time Optimizer</h1>
+    <h2 class="owner">Creator : Mehmood Umar</h2>
+    <p1 class="introduction">Hi, this is a calculator that can help you optimize the performance of your MultiRotor drone! The program will calculate the number of batteries you should use to maximize your flight time.</p1>
+
+    <form class="user-input2" method="post">
+        Motor File Name: <input type="text" name="motor_file"><br>
+        Battery File Name: <input type="text" name="battery_file"><br>
+        Drone Weight (g): <input type="number" step="any" name="drone_weight"><br>
+        Desired Velocity (m/s): <input type="number" step="any" name="desired_velocity"><br>
+        Desired Altitude (m): <input type="number" step="any" name="desired_altitude"><br>
+        <input class ="optimize-button" type="submit" value="Optimize">
+    </form>
+    <h3 class="result-title">Optimization Results</h3>
+    <p class="result-batteries">Optimal Number of Batteries: {{ optimal_batteries }}</p>
+    <p class="result-time">Time of Flight: {{ time_of_flight }} seconds</p>
+    <h3 class="motor-file-title"> Supported Motors: <a href="https://store.tmotor.com/product/v10l-vtol-motor.html"
+            target="_blank">V10L</a> <a href="https://store.tmotor.com/product/v505-vtol-motor.html"
+            target="_blank">V505</a> <a href="https://store.tmotor.com/product/v602-vtol-motor.html"
+            target="_blank">V602</a> <a href="https://store.tmotor.com/product/v605-vtol-motor.html"
+            target="_blank">V605</a> <a href="https://store.tmotor.com/product/v804-vtol-motor.html"
+            target="_blank">V804</a> <a href="https://store.tmotor.com/product/v807-vtol-motor.html"
+            target="_blank">V807</a> </h3>
+    <h4 class="battery-file-title"> Supported Batteries: <a href="https://www.amazon.ca/Zeee-Battery-9000mAh-Connector-Traxxas/dp/B08CDT3SR3/ref=sr_1_12?keywords=6s+lipo+battery+10000&sr=8-12&ufe=app_do%3Aamzn1.fos.71722c10-739d-471b-befb-3e4b9bf7d0d6"
+        target="_blank">LiPo-1</a> <a href="https://www.amazon.ca/Zeee-Battery-9000mAh-Connector-Traxxas/dp/B08CDT3SR3/ref=sr_1_12?keywords=6s+lipo+battery+10000&sr=8-12&ufe=app_do%3Aamzn1.fos.71722c10-739d-471b-befb-3e4b9bf7d0d6"
+        target="_blank">LiPo-2</a> </h4>
+
+    
+</body>
+
+</html>

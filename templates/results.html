@@ -1,39 +1,122 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Flight Optimizer</title>
-    <link rel="stylesheet" href="../static/results.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- This is the style for the header -->
+    <link rel="stylesheet" href="../static/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- This is just a font that we'll be using. You can remove lines 12-14 if you don't want to use Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Hi</title>
 </head>
-
 <body>
-    <h1 class="header1">Flight Time Optimizer</h1>
-    <h2 class="owner">Creator : Mehmood Umar</h2>
-    <p1 class="introduction">Hi, this is a calculator that can help you optimize the performance of your MultiRotor drone! The program will calculate the number of batteries you should use to maximize your flight time.</p1>
+       <div class="header">
+            <div class="innerheader">
+                <div class="logos">
+                    <h1>DRONE <span>CALCULATOR</span></h1>
+                </div>
+                <ul class="navigation">
+                    <a><li>Home</li></a>
+                    <a><li>About</li></a>
+                    <a><li>Contact</li></a>
+                </ul>
+            </div>
+       </div>
+       <!-- end of the header block -->
+    <div class="flex-container">
+       <div class="main-container">
+            
+            <form class="inputs" method="post">
+                <label for="motor_file">Motor File Name</label>
+                <select type="text" name="motor_file">
+                    <option>choose</option>
+                    <option>V10L</option>
+                    <option>V505</option>
+                    <option>V602</option>
+                    <option>V605</option>
+                    <option>V804</option>
+                    <option>V807</option>
+                </select><br>
+                <label for="battery_file">Battery File Name</label>
+                <select type="text" name="battery_file">
+                    <option>choose</option>
+                    <option>LiPo-1</option>
+                    <option>LiPo-2</option>
+                </select><br>
+                <label for="drone_weight">Drone Weight (g)</label>
+                <input type="number" step="any" name="drone_weight"><br>
+                <label for="desired_velocity">Desired Velocity (m/s)</label>
+                <input type="number" step="any" name="desired_velocity"><br>
+                <label for="desired_altitude">Desired Altitude (m)</label>
+                <input type="number" step="any" name="desired_altitude"><br>
+                <input class="calculate-button" type="submit" value="calculate">
+            </form>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+            <div class="Graph-Container"><canvas id="acquisitions"></canvas></div>
+            <script type="module">
+            let graph_data = JSON.parse({{ graph_data | tojson }});
+            (async function() {
+            var data = graph_data;
+            
+        
+            new Chart(
+            document.getElementById('acquisitions'),
+            {
+                type: 'line',
+                data: {
+                labels: data.map(row => row.BatteryNumber),
+                datasets: [
+                    {
+                    label: 'Flight Time vs Battery Count',
+                    data: data.map(row => row.FlightTime)
+                    }
+                ]
+                }
+            }
+            );
+        })();</script>
 
-    <form class="user-input2" method="post">
-        Motor File Name: <input type="text" name="motor_file"><br>
-        Battery File Name: <input type="text" name="battery_file"><br>
-        Drone Weight (g): <input type="number" step="any" name="drone_weight"><br>
-        Desired Velocity (m/s): <input type="number" step="any" name="desired_velocity"><br>
-        Desired Altitude (m): <input type="number" step="any" name="desired_altitude"><br>
-        <input class ="optimize-button" type="submit" value="Optimize">
-    </form>
-    <h3 class="result-title">Optimization Results</h3>
-    <p class="result-batteries">Optimal Number of Batteries: {{ optimal_batteries }}</p>
-    <p class="result-time">Time of Flight: {{ time_of_flight }} seconds</p>
-    <h3 class="motor-file-title"> Supported Motors: <a href="https://store.tmotor.com/product/v10l-vtol-motor.html"
-            target="_blank">V10L</a> <a href="https://store.tmotor.com/product/v505-vtol-motor.html"
-            target="_blank">V505</a> <a href="https://store.tmotor.com/product/v602-vtol-motor.html"
-            target="_blank">V602</a> <a href="https://store.tmotor.com/product/v605-vtol-motor.html"
-            target="_blank">V605</a> <a href="https://store.tmotor.com/product/v804-vtol-motor.html"
-            target="_blank">V804</a> <a href="https://store.tmotor.com/product/v807-vtol-motor.html"
-            target="_blank">V807</a> </h3>
-    <h4 class="battery-file-title"> Supported Batteries: <a href="https://www.amazon.ca/Zeee-Battery-9000mAh-Connector-Traxxas/dp/B08CDT3SR3/ref=sr_1_12?keywords=6s+lipo+battery+10000&sr=8-12&ufe=app_do%3Aamzn1.fos.71722c10-739d-471b-befb-3e4b9bf7d0d6"
-        target="_blank">LiPo-1</a> <a href="https://www.amazon.ca/Zeee-Battery-9000mAh-Connector-Traxxas/dp/B08CDT3SR3/ref=sr_1_12?keywords=6s+lipo+battery+10000&sr=8-12&ufe=app_do%3Aamzn1.fos.71722c10-739d-471b-befb-3e4b9bf7d0d6"
-        target="_blank">LiPo-2</a> </h4>
+       </div>
+       <div class="Results-Box">
+        <h3 class="Results-Analysis-Title">Results: </h3>
+        <ul class="Results-Analysis-UnorderedList">
+            <li class="Results-Analysis-List">Hover Flight Time:   {{time_of_flight}}  ~ seconds </li>
+            <li class="Results-Analysis-List">Total Drone Weight:      ~ g</li>
+        </ul>
 
+    </div>
+       <div class="Analysis-Box">
+            <h2 class="Motor-Analysis-Title">Motor: </h2>
+            <ul class="Motor-Analysis-UnorderedList">
+                <li class="Motor-Analysis-List">Current - Optimal:     ~ A</li>
+                <li class="Motor-Analysis-List">Voltage - Optimal:     ~ V</li>
+                <li class="Motor-Analysis-List">Mechanical Power - Optimal:     ~ J</li>
+                <li class="Motor-Analysis-List">Best Compatible Propellar:     ~</li>
+                <li class="Motor-Analysis-List">Max Thrust:     ~ </li>
+            </ul>
+           
+
+       </div>
+       <div class="Batteries-Box">
+        <h3 class="Battery-Analysis-Title">Battery: </h3>
+        <ul class="Battery-Analysis-UnorderedList">
+            <li class="Battery-Analysis-List">Voltage:     ~ V</li>
+            <li class="Battery-Analysis-List">Energy:      ~ J</li>
+            <li class="Battery-Analysis-List">Capacity:    ~ mAh</li>
+            <li class="Battery-Analysis-List">Weight:      ~ g</li>
+        </ul>
+          
+        </div>
+    </div>
     
 </body>
-
 </html>

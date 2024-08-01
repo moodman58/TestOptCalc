@@ -1,0 +1,155 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+*{
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+html{
+  color-scheme: dark light;
+}
+body {
+  min-height: 100vh;
+}
+img, picture, svg, video{
+  display: block;
+  max-width: 100%;
+}
+
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Reset some default styles */
+body, h1, h2{
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  font-family: 'Roboto', sans-serif; /* Updated font */
+  color: white;
+  line-height: 1.6;
+  padding-left: 80px;
+  padding-top: 20px;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header2 {
+  color: gold;
+  padding: 0px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+.owner {
+  text-align: center;
+  font-size: 1.2em;
+  color: white; /* Lighter text */
+  margin-bottom: 30px;
+}
+
+.introduction {
+  color: white; 
+  font-size: 1.1em;
+  max-width: 700px;
+  padding-left: 350px;
+}
+.motor-file-title{
+  color: yellow;
+  font-size: 1.5em;
+  padding-right: 300px;
+  text-align: right;
+  margin-bottom: 80px;
+  padding-bottom:100px;
+}
+
+.battery-file-title{
+  color: yellow;
+  font-size: 1.5em;
+  text-align: right;
+  padding-right: 500px;
+  margin-bottom:80px;
+  padding-bottom: 0px;
+}
+
+a{
+  color: white;
+}
+.user-input{
+  margin-left: 20px;
+}
+
+
+
+input[type="text"],
+input[type="number"],
+button {
+  padding: 10px;
+  margin: 20px;
+  margin-left: 45px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: all 0.3s ease; /* Smooth transition for interactions */
+}
+
+body {
+  background-image: linear-gradient(rgb(0, 0, 0, 1),rgba(0, 0, 0, 0.7)) , url('images/plane.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+.optimize-button2{
+  background: red;
+  border-radius: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border: 0px;
+}
+.optimize-button2:hover{
+  opacity: 0.8;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* Responsive design for smaller screens */
+@media only screen and (max-width: 600px) {
+  .header {
+    font-size: 2em; /* Smaller font size for headers on small screens */
+  }
+
+  .introduction {
+    font-size: 1em; /* Smaller text on small screens */
+  }
+}
+
+
+@media (max-width: 768px){
+  .header2 {
+    font-size: 2em;
+  }
+
+  .introduction {
+    font-size: 1em;
+    text-align: center;
+    padding: 0 10px; /* Adjusted padding for better spacing on smaller screens */
+  }
+
+  .motor-file-title,
+  .battery-file-title {
+    padding-right: 20px; /* Adjusted padding for better spacing on smaller screens */
+    padding-left: 20px;
+  }
+}
+
+@media only screen and (min-width: 768) and (max-width:1023){
+
+}
