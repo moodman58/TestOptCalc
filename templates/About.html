@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- This is the style for the header -->
+    <link rel="stylesheet" href="../static/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- This is just a font that we'll be using. You can remove lines 12-14 if you don't want to use Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Hi</title>
+</head>
+<body>
+       <div class="header">
+            <div class="innerheader">
+                <div class="logos">
+                    <h1>DRONE <span>CALCULATOR</span></h1>
+                </div>
+                <ul class="navigation">
+                    <a href="{{url_for('Home')}}"><li>Home</li></a>
+                    <a href="{{url_for('About')}}"><li>About</li></a>
+                    <a href="{{url_for('Contact')}}"><li>Contact</li></a>
+                </ul>
+            </div>
+       </div>
+       <!-- end of the header block -->
+       <div class="coming-soon">Coming Soon!</div>
+    
+</body>
+</html>

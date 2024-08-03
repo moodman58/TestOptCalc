@@ -25,9 +25,9 @@
                     <h1>DRONE <span>CALCULATOR</span></h1>
                 </div>
                 <ul class="navigation">
-                    <a><li>Home</li></a>
-                    <a><li>About</li></a>
-                    <a><li>Contact</li></a>
+                    <a href="{{url_for('Home')}}"><li>Home</li></a>
+                    <a href="{{url_for('About')}}"><li>About</li></a>
+                    <a href="{{url_for('Contact')}}"><li>Contact</li></a>
                 </ul>
             </div>
        </div>
@@ -103,19 +103,22 @@
        <div class="Results-Box">
         <h3 class="Results-Analysis-Title">Results: </h3>
         <ul class="Results-Analysis-UnorderedList">
-            <li class="Results-Analysis-List">Hover Flight Time:     ~ min </li>
-            <li class="Results-Analysis-List">Total Drone Weight:      ~ g</li>
+            <li class="Results-Analysis-List">Hover Flight Time:    ~ seconds </li>
+            <li class="Results-Analysis-List">Optimal Battery Number:   ~  Batterie(s)</li>
+            <li class="Results-Analysis-List">Total Drone Weight:    ~ g</li>
         </ul>
 
     </div>
        <div class="Analysis-Box">
             <h2 class="Motor-Analysis-Title">Motor: </h2>
             <ul class="Motor-Analysis-UnorderedList">
-                <li class="Motor-Analysis-List">Current - Optimal:     ~ A</li>
-                <li class="Motor-Analysis-List">Voltage - Optimal:     ~ V</li>
-                <li class="Motor-Analysis-List">Mechanical Power - Optimal:     ~ J</li>
-                <li class="Motor-Analysis-List">Best Compatible Propellar:     ~</li>
-                <li class="Motor-Analysis-List">Max Thrust:     ~ </li>
+                <li class="Motor-Analysis-List">Current - Optimal:  ~   A</li>
+                <li class="Motor-Analysis-List">Voltage - Optimal:   ~    V</li>
+                <li class="Motor-Analysis-List">Mechanical Power - Optimal:   ~   J</li>
+                <li class="Motor-Analysis-List">Best Compatible Propellar:  ~   </li>
+                <li class="Motor-Analysis-List">Max Thrust:  ~   N </li>
+                <li class="Motor-Analysis-List">Prop mass:   ~  g</li>
+                <li class="Motor-Analysis-List">Battery Cell Count:  ~   cells </li>
             </ul>
            
 

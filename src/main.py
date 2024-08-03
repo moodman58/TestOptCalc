@@ -262,7 +262,28 @@ class flight_time:
 
         # Plotting
         return graph_data
-    
+    def BatteryWeight(self):
+        print(float(self.battery_system.data_collected["MASS OF BATTERY"]))
+        return float(self.battery_system.data_collected["MASS OF BATTERY"])
+    def BatteryCapacity(self):
+        return float(self.battery_system.data_collected["mAh OF BATTERY"])
+    def BatteryVoltage(self):
+        return float(self.battery_system.data_collected["BATTERY VOLTAGE"])
+    def BatteryEnergy(self):
+        return float(self.battery_system.battery_energy())
+    def MotorPropellar(self):
+        return str(self.power_system.data_collected["PROPELLAR NAME"])
+    def MotorMaxThrust(self):
+        return float(self.power_system.data_collected["MAX THRUST"])
+    def MotorPropellarMass(self):
+        return float(self.power_system.data_collected["PROPELLAR MASS"])
+    def MotorPropellarBatteryCellCount(self):
+        return float(self.power_system.data_collected["BATTERY CELL COUNT"])
+    def DroneWeight(self):
+        PropMassTotal = float(self.power_system.data_collected["PROPELLAR MASS"]) * 4
+        BatteryWeight = float(self.battery_system.data_collected["MASS OF BATTERY"])
+        TotalDroneWeight = float(PropMassTotal + BatteryWeight)
+        return TotalDroneWeight
    
 
 # Create an instance of flight_time
