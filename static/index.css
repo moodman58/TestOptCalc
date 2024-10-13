@@ -120,12 +120,14 @@
     font-family: "montseratt";
     margin-bottom: 20px;
     margin-top: 10px;
+    margin-left: 10px;
 }
 .Motor-Analysis-Title{
     margin-top: 10px;
     font-size: 20px;
     font-family: "montseratt";
     margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 .Battery-Analysis-Title{
@@ -133,6 +135,7 @@
     font-size: 20px;
     font-family: "montseratt";
     margin-bottom: 20px;
+    margin-left: 10px;
 }
 .Results-Analysis-List{
     font-size: 15px;
