@@ -154,4 +154,11 @@ body {
   }
 }
 
+@media only screen and (max-height: 800px) {
+  .Graph-Container {
+    height: 38vh;
+    width: 80vh; /* Smaller font size for headers on small screens */
+  }
+
+}
 
